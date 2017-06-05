@@ -1,0 +1,57 @@
+body,
+p,
+div,
+img {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  margin: 0 auto;
+  background-color: #eee;
+  border: 1px solid #999;
+  padding: 20px;
+  overflow: hidden;
+  width: auto;
+}
+.logo {
+  width: 200px;
+  border: 1px solid #999;
+  background-color: #ffffff;
+  overflow: hidden;
+  float: left;
+  margin-right: 20px;
+}
+.logo .logo_Image {
+  width: 80px;
+  padding: 10px;
+  float: left;
+}
+.logo .name {
+  width: 80px;
+  padding: 10px;
+  font-family: "微软雅黑";
+  float: right;
+}
+.person_logo {
+  width: 120px;
+  background-color: #ffffff;
+  float: right;
+  border: 1px solid #999;
+  padding-bottom: 20px;
+  margin-left: 20px;
+}
+.person_logo .person_img {
+  width: 80px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.introduce {
+  font: "微软雅黑";
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-size: 14px;
+  text-indent: 2em;
+}

@@ -1,0 +1,59 @@
+@backgroundColor:#eee;
+@borderColor:#999;
+@thePadding:20px;
+@font:"微软雅黑";
+body,p,div,img{
+  padding:0;
+  margin:0;
+}
+.container{
+  margin:0 auto;
+  background-color: @backgroundColor;
+  border:1px solid @borderColor;
+  padding:20px;
+  overflow: hidden;
+  width:auto;
+}
+.logo{
+  width:200px;
+  border:1px solid @borderColor;
+  background-color: #ffffff;
+  overflow: hidden;
+  float: left;
+  margin-right:20px;
+  .logo_Image{
+    width:80px;
+    padding:10px;
+    float:left;
+  }
+  .name{
+    width:80px;
+    padding:10px;
+    font-family: @font;
+    float:right;
+  }
+}
+.person_logo{
+  width:120px;
+  background-color: #ffffff;
+  float: right;
+  border:1px solid @borderColor;
+  padding-bottom: 20px;
+  margin-left: 20px;
+  .person_img{
+    width:80px;
+    padding-top:20px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+}
+
+.introduce{
+  font: @font;
+  padding:20px;
+  border:1px solid @borderColor;
+  overflow: hidden;
+  background-color: #ffffff;
+  font-size:14px;
+  text-indent: 2em;
+}
