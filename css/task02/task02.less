@@ -1,0 +1,38 @@
+.borderRadius(@up,@right,@down,@left){
+  border-radius: @up @right @down @left;
+  width:50px;
+  height:50px;
+  background-color: gold;
+}
+body,div{
+  margin:0;
+  padding:0;
+}
+
+.container{
+  background-color: #999;
+  width:400px;
+  height:200px;
+  margin:50px auto;
+  border: 1px solid black;
+}
+.left_up{
+  .borderRadius(0,0,50px,0);
+  float: left;
+}
+
+.right_up{
+  .borderRadius(0,0,0,50px);
+  float: right;
+}
+.left_down{
+  .borderRadius(0,50px,0,0);
+  margin-top:100px;
+  float: left;
+  clear: both;
+}
+.right_down{
+ .borderRadius(50px,0,0,0);
+  margin-top: 100px;
+  float: right;
+}
