@@ -17,6 +17,7 @@
 *    "上海": 40
 * };
 */
+
 var aqiData = {};
 
 /**
@@ -24,14 +25,42 @@ var aqiData = {};
  * 然后渲染aqi-list列表，增加新增的数据
  */
 function addAqiData() {
-
+    var aqi_city_data=document.getElementById("aqi-city-input").value.trim();
+    console.log(aqi_city_data)
+    var aqi_value_data=document.getElementById("aqi-value-input").value.trim();
+    if(!aqi_city_data.match(/^[A-Za-z\u4E00-\u9FA5]+$/)){
+        alert("Just only allow chinese and english!");
+        return;
+    }
+    if(!aqi_value_data.match(/^[0-9]+$/)){
+        alert('Just allowe number!');
+        return ;
+    }
+    aqiData[aqi_city_data]=aqi_value_data;
 }
 
 /**
  * 渲染aqi-table表格
  */
 function renderAqiList() {
-
+    var aqi_table=document.getElementById("aqi-table");
+    aqi_table.innerHTML=""
+    for(var city in aqiData){
+        if(aqi_table.children.length==0){
+            aqi_table.innerHTML="<tr><td>城市</td><td>空气质量</td><td>操作</td></tr>";
+        }
+        var tr=document.createElement('tr');
+        var td1=document.createElement('td');
+        td1.innerText=city;
+        tr.appendChild(td1);
+        var td2=document.createElement('td');
+        td2.innerText=aqiData[city];
+        tr.appendChild(td2);
+        var td3=document.createElement('td');
+        td3.innerHTML="<button class='del'>Delete</button>";
+        tr.appendChild(td3);
+        aqi_table.appendChild(tr);
+    }
 }
 
 /**
@@ -47,18 +76,27 @@ function addBtnHandle() {
  * 点击各个删除按钮的时候的处理逻辑
  * 获取哪个城市数据被删，删除数据，更新表格显示
  */
-function delBtnHandle() {
+function delBtnHandle(target) {
     // do sth.
-
+    var tr = target.parentElement.parentElement; //第一个td
+    var strCity = tr.children[0].innerText;//第一个td
+    delete aqiData[strCity];
     renderAqiList();
 }
 
 function init() {
 
     // 在这下面给add-btn绑定一个点击事件，点击时触发addBtnHandle函数
-
+    var btnAdd=document.getElementById('add-btn');
+    btnAdd.addEventListener('click',addBtnHandle);
     // 想办法给aqi-table中的所有删除按钮绑定事件，触发delBtnHandle函数
+    var table = document.getElementById("aqi-table");
+    var arrBtnDel = table.getElementsByClassName("del-btn");
 
+    table.addEventListener("click", function(e) {
+        if (e.target && e.target.nodeName === "BUTTON") {
+            delBtnHandle(e.target);
+        }
+    })
 }
-
 init();
