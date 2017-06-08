@@ -8,7 +8,15 @@
  }
  };
  */
-
+/* 数据格式演示
+ var aqiSourceData = {
+ "北京": {
+ "2016-01-01": 10,
+ "2016-01-02": 10,
+ "2016-01-03": 10,
+ "2016-01-04": 10
+ }
+ };*/
 // 以下两个函数用于随机模拟生成测试数据
 function getDateStr(dat) {
     var y = dat.getFullYear();
@@ -55,7 +63,16 @@ var pageState = {
  * 渲染图表
  */
 function renderChart() {
-
+    var html=''
+    var wrapper=document.getElementById("aqi-chart-wrap");
+    var width=wrapper.clientWidth;
+    var selectedData=chartData[pageState.nowGraTime][pageState.nowSelectCity];
+    var len=Object.keys(selectedData).length;
+    var posObj=getWidth(width,len);
+    html+="<div class='title'>" + pageState.nowSelectCity+ '市01-03月'+getTitle()+"空气质量报告</div>";
+    for(var key in selectedData){
+        html+="<div class='aqi-bar"+pageState.nowGraTime+"' style='height:"+selectedData+"px;width:"+posObj.width+"px;left:12px;background-color:red'></div>";
+    }
 }
 
 /**
