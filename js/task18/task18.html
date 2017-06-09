@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task18</title>
+    <style>
+        .display{
+            width:80px;
+            height:80px;
+            background-color: red;
+            float: left;
+            margin:10px 20px 20px 0;
+        }
+    </style>
+
+</head>
+<body>
+<div id="in">
+    <input type="text" id="aqi-input-value"value="">
+    <button id="leftIn">左侧入</button>
+    <button id="rightIn">右侧入</button>
+    <button id="leftOut">左侧出</button>
+    <button id="rightOut">右侧出</button>
+</div>
+<div id="aqi-display"></div>
+<script>
+    var data=[];
+    var aqi_display=document.getElementById('aqi-display');
+
+    function each(arr, fn) {
+        for (var cur = 0; cur < arr.length; cur++) {
+            fn(arr[cur], cur);
+        }
+    }
+    function render(){
+        var str=""
+        each(data,function(item){str+="<div class='display'>"+parseInt(item)+"</div>"})
+        aqi_display.innerHTML=str;
+
+    }
+    function leftIn(){
+        var aqi_input_value=document.getElementById('aqi-input-value').value.trim();
+        data.unshift(aqi_input_value);
+        render();
+
+    }
+    function rightIn(){
+        var aqi_input_value=document.getElementById('aqi-input-value').value.trim();
+        data.push(aqi_input_value);
+        render();
+    }
+    function isEmpty(){
+        return data.length==0;
+    }
+    function leftOut(){
+        if(!isEmpty()){
+            data.shift();
+            render();
+        }else{
+            alert('Queue is empty!');
+        }
+    }
+    function rightOut(){
+        if(!isEmpty()){
+            data.pop();
+            render();
+        }else{
+            alert('Queue is empty');
+        }
+    }
+    function init(){
+        var left_in=document.getElementById("leftIn");
+        left_in.addEventListener('click',leftIn);
+        var right_in=document.getElementById("rightIn");
+        right_in.addEventListener('click',rightIn);
+        var left_out=document.getElementById("leftOut");
+        left_out.addEventListener('click',leftOut);
+        var right_out=document.getElementById("rightOut");
+        right_out.addEventListener("click",rightOut)
+    }
+    init();
+</script>
+</body>
+</html>
