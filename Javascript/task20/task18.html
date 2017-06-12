@@ -21,13 +21,16 @@
             width: 300px;
             height: 150px;
         }
+        .select{
+            background-color: yellow;
+        }
     </style>
 
 </head>
 <body>
 <div id="in">
     <textarea type="text" id="aqi-input-value"></textarea>
-    <button id="leftIn">增加</button>
+    <button id="add">增加</button>
 </div>
 <div>
     <input id="search_value" type="text">
@@ -35,7 +38,40 @@
 </div>
 <div id="aqi-display"></div>
 <script>
+    var data=[]
+    function render(str){
+        var display=document.getElementById("aqi-display");
+        display.innerHTML=data.map(function(d){
+            if(str!=null&& str.length>0){
+                d=d.replace(new RegExp(str,"g"),"<span class='select'>"+str+"</span>");
+            }
+            return "<div>"+d+"</div>";
+        }).join('');
+    }
 
+    function add(){
+        var str=document.getElementById("aqi-input-value").value.trim();
+        var word=str.split(/[^0-9A-Za-z\u4e00-\u9fa5]+/).filter(function(e){
+            if(e!=null && e.length>0){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        data=data.concat(word);
+        render();
+    }
+    function search(){
+        var str=document.getElementById("search_value").value.trim();
+        render(str);
+    }
+    function init(){
+        var search_btn=document.getElementById("search_btn");
+        var add_btn=document.getElementById("add");
+        search_btn.addEventListener('click',search);
+        add_btn.addEventListener('click',add);
+    }
+    init();
 </script>
 </body>
 </html>
