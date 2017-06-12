@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task21</title>
+    <style>
+        textarea{
+            width:400px;
+            height:200px;
+            margin-top: 100px;
+        }
+        .second{
+            width:auto;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <label>Tag : </label><input type="text" id="tag"/>
+    <div id="tag-display"></div>
+</div>
+<div class="second">
+    <label>爱好:</label><textarea id="love"></textarea>
+    <button id="add-btn">Add +++</button>
+    <div id="love-display"></div>
+</div>
+<script>
+    var $=function(el){
+        return document.querySelector(el)
+    };
+    var str="";
+    $('#tag').onkeydown=function (event) {
+        var e=event||window.event||arguments.callee.arguments[0];
+        if(e && e.keyCode== 32||e&& e.keyCode==188 ||e && e.keyCode==13){
+            var tag=$("#tag").value.trim();
+            str+="<div class='tag_cls'>"+tag+"</div>";
+            $('#tag-display').innerHTML=str;
+        }
+    }
+</script>
+</body>
+</html>
